@@ -22,6 +22,54 @@ class ThemeShowcase extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        Text('Typography', style: Theme.of(context).textTheme.headline4),
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text('Normal TextTheme',
+                            style: Theme.of(context).textTheme.subtitle1),
+                      ),
+                      const TextThemeShowcase(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Card(
+                color: Theme.of(context).colorScheme.primary,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        child: Text('Primary TextTheme',
+                            style:
+                                Theme.of(context).primaryTextTheme.subtitle1),
+                      ),
+                      const PrimaryTextThemeShowcase(),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+
+        Text('Buttons', style: Theme.of(context).textTheme.headline4),
+        // Text('Layout', style: Theme.of(context).textTheme.headline4),
         const ButtonShowcase(),
         const SizedBox(height: 8),
         const ButtonShowcase(enabled: false),
@@ -43,8 +91,12 @@ class ThemeShowcase extends StatelessWidget {
         const CheckboxShowcase(),
         const ChipShowcase(),
         const Divider(),
+        Text('Input and selections',
+            style: Theme.of(context).textTheme.headline4),
         const TextInputField(),
         const Divider(),
+        Text('App structure and navigation',
+            style: Theme.of(context).textTheme.headline4),
         const TabBarForAppBarShowcase(),
         const TabBarForBackgroundShowcase(),
         const SizedBox(height: 8),
@@ -54,48 +106,18 @@ class ThemeShowcase extends StatelessWidget {
         const Divider(),
         const ListTileShowcase(),
         const Divider(),
+        Text('Dialogs, alerts, and panels',
+            style: Theme.of(context).textTheme.headline4),
         const TimePickerDialogShowcase(),
         const DatePickerDialogShowcase(),
         const AlertDialogShowcase(),
         const Divider(),
         const MaterialAndBottomSheetShowcase(),
         const Divider(height: 32),
+        Text('Information displays',
+            style: Theme.of(context).textTheme.headline4),
         const CardShowcase(),
-        const SizedBox(height: 8),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Text('Normal TextTheme',
-                      style: Theme.of(context).textTheme.subtitle1),
-                ),
-                const TextThemeShowcase(),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Card(
-          color: Theme.of(context).colorScheme.primary,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Text('Primary TextTheme',
-                      style: Theme.of(context).primaryTextTheme.subtitle1),
-                ),
-                const PrimaryTextThemeShowcase(),
-              ],
-            ),
-          ),
-        ),
+        const SizedBox(height: 8)
       ],
     );
   }
@@ -948,7 +970,8 @@ class TextThemeShowcase extends StatelessWidget {
         Text(
           'Headline 1 '
           '(${text.headline1!.fontSize!.toStringAsFixed(0)})',
-          style: text.headline1,
+          maxLines: 1,
+          style: text.headline1?.copyWith(overflow: TextOverflow.ellipsis),
         ),
         Text(
           'Headline 2 '
@@ -1029,7 +1052,8 @@ class PrimaryTextThemeShowcase extends StatelessWidget {
         Text(
           'Headline 1 '
           '(${text.headline1!.fontSize!.toStringAsFixed(0)})',
-          style: text.headline1,
+          maxLines: 1,
+          style: text.headline1?.copyWith(overflow: TextOverflow.ellipsis),
         ),
         Text(
           'Headline 2 '
